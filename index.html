@@ -68,13 +68,7 @@
 							<li><a href="https://github.com/Dreamweaver2k" class="button">Github Profile</a></li>
 						</ul>
 					</section>
-					<?php
-					$to_email_address = "chandlerault@gmail.com";
-					$subject = "test";
-					$message = 'hello world';
 					
-					mail($to_email_address,$subject,$message,[$headers],[$parameters]);
-					?>
 				<!-- Three -->
 					<section id="three">
 						<h2>Get In Touch</h2>
@@ -84,6 +78,7 @@
 								Send Feedback
 								</a>
 							<div class="col-8 col-12-small">
+							
 								<form method="post" action="#">
 									<div class="row gtr-uniform gtr-50">
 										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name/Company" /></div>
@@ -97,6 +92,13 @@
 							</div>
 							
 							<div class="col-4 col-12-small">
+								<?php
+					$to_email_address = "chandlerault@gmail.com";
+					$subject = "test";
+					$message = 'hello world';
+					
+					mail($to_email_address,$subject,$message,[$headers],[$parameters]);
+					?>
 								<form method="post" action="mail">
 
 
