@@ -1,0 +1,699 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dimension by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets_dim/css/lp.css" />
+		<noscript><link rel="stylesheet" href="assets_dim/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class="icon fa-gem"></span>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>License Plate Privacy</h1>
+								<p>A real-time yolov5 license plate detection architecture with reversible obfuscation and object tracking.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#summary">Summary</a></li>
+								<li><a href="#approach">Approach</a></li>
+								<li><a href="#results">Results</a></li>
+								<li><a href="#source">Source</a></li>
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">Intro</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+<p>Over the past few decades, the U.S. has seen an increasing number of cameras put in place for
+	protection and surveillance. This trend saw the U.S. drop its population per camera ratio from 6.9
+	to 4.6 between 2015 to 2018; this ratio is nearly on par with China whose population to camera
+	ratio was 4.1 in 2018. Although to most the possibility of a dystopian surveillance state today
+	seems outrageous, there is cause for concern. This concern is even more alarming for minorities
+	who are discriminated against every day without mass surveillance. When one considers how the
+	growing power of modern computing could be leveraged against them, it is not hard to see how dire
+	the circumstances are.
+	</p>					<p>	Although the possibility of a future surveillance state is real, that does not mean there is no
+	abuse of the surveillance systems now. In fact, there have been a variety of abuses already reported
+	in America. The first form this takes is personal abuse. There have been numerous reports of
+	police using cameras and license plate databases to stalk estranged spouses, to solicit strangers for
+	romantic pursuits, to threaten motorists after traffic stops, or to do a variety of other inappropriate
+	actions. Furthermore, and perhaps more difficult to measure, is institutional abuse. In the
+	wake of the George Floyd protests, the then Attorney General Bill Barr increased the surveillance
+	authorities of law enforcement to fight against drugs. Not only is this likely to be abused on
+	racial grounds since black people are much more likely to be arrested on drug related charges
+	than white people, but it also posed the risk of silencing protesters by targeting them with the
+	increased surveillance. Additionally, there have been reports that traffic cameras and
+	police cameras are more prevalent in black neighborhoods causing more fines and investigations
+	being initiated in this minority group. Finally, there have been reports of unabashed criminal
+	abuses. For example, one police official was caught gathering license plates of cars in gay club
+	parking lots and blackmail married individuals. Not only is this example criminal, but it is once
+	again facilitating the discrimination of a minority group. Thus, there are many tangible concerns
+	about the growing surveillance system in the United States. </p>
+	<p>All of these examples are in the United States alone, however, the possible future of a surveillance
+	state is being realized in China today. Over the past few years there have been reports of China
+	deploying a social credit score to incentivize “good behavior” in its citizens. The social
+	credit score is based on numerous factors, but some of these factors include jaywalking, buying
+	or playing too many video games, buying Chinese made goods, and many more trivial factors.
+	Although the consequences of a low social credit scores is sometimes as light as longer wait times
+	at government institutions or jaywalkers being shamed by having their face displayed on public
+	televisions, there are other cases in which a low social credit score can prevent someone from
+	performing basic functions of life. Some of the more dire repercussions of a low score
+	include being barred from purchasing plane tickets, getting loans, renting a place to live, and
+	more [14]. Seeing the power of a surveillance state in action in China should be eye opening as it
+	demonstrates how surveillance could be abused in other western countries such as the United States. </p>
+	<p>Briefly digressing into conjecture, as the COVID-19 pandemic rages on, it is not difficult to
+	envision a world where a large-scale surveillance system could be used encroach on freedom in the
+	name of safety. Consider a government tracking license plates and lowering one’s social credit score
+	or preventing them from entering essential stores for visiting a friend on their birthday or attending
+	a large protest. This could easily be justified in the name of the public’s health and safety, but it
+	would clearly be a violation of the First Amendment. Furthermore, it would be prone to abuse as the
+	government could attempt to silence the people on the most important topics such as racial equality.
+	Many of the most prevalent modern-day concerns of a surveillance state revolve around facial
+	recognition software. Accordingly, most privacy addressing solutions to these concerns revolve
+	around curtailing the use of biomarkers such as facial recognition. There are numerous face deconstruction and obfuscation frameworks in development some of which seek to put the decision of
+	whether facial markers can be used in the hands of the individuals. Despite the work in facial
+	privacy in response to the increase in cameras, there are noticeably less solutions addressing the
+	problem of license plate detection and recognition in surveillance systems. Although it is evident
+	that face recognition poses privacy concerns, it is equally true vis-à-vis license plate recognition
+	since a plate is a one-to-one mapping to the owner of a vehicle. As previously detailed, this mapping
+	of a license plate to an individual is frequently abused by law enforcement in various, and often
+	discriminatory, ways. Due to this risk of abuse as well as lack of research into license plate privacy,
+	my goal for this project was to create a template for what a real-time license plate privacy system
+	may look like including license plate detection and obfuscation in a real-world setting. </p>
+									</article>
+
+						<!-- Work -->
+							<article id="approach">
+								<h2 class="major">Approach</h2>
+								<h3>Architecture</h3>
+								<p>The objective of this system is to provide privacy in real-life video settings. Thus, the input to
+									the system can be assumed to be either traffic or security footage. After this passes through the
+									system, the resulting output should be the same footage with the privacy compromising license
+									plates obfuscated. The following sections will detail how my system went about achieving this goal.
+									</p>
+									<span class="image main"><img src="images/license/networktypes.jpg" alt="" /></span>
+
+									<p>
+										As previously stated, the detection model chosen for this system is YOLOv5. YOLOv5 comes
+with various sizes of base networks, and when choosing one, it is important to consider the attributes
+of the system and which model bests contributes to these. For a real-time privacy system that
+implements license-plate tracking and obfuscation on every frame to only a single object-type, one
+of the smaller networks is appropriate. As the networks shrink in size, their inference time also
+shrinks. Additionally, the fact that there is only one object to be labeled per frame (i.e. license
+plates), larger networks would utilize an unnecessary amount of storage space. Thus, this system
+employs the YOLOv5s network which is the smallest model and claims to yield an inference time
+of 2.2 ms. per image. The network also requires very little storage space. Overall, the YOLOv5s
+is about 10x smaller than the largest model size and almost 3 times faster.
+									</p>
+
+									<h3>Data Set</h3>
+<p>Selecting a dataset was one of the most difficult parts of the setup process. For the first round of
+	training, the model was trained on a subsection of the Chinese City Parking Dataset (CCPD).
+	This dataset contains over 250k car images with a single license plate visible. CCPD also primarily
+	contains unobstructed license plates though it overcomes this by containing poor lighting and blurry
+	conditions in some of their images. Due to space and computational limitations, my
+	model was trained on a subsection with a size of about 5,000 images.</p>
+	<p>The fundamental flaw of the CCPD is that it does not represent difficult real-life scenarios incredibly well. To combat this, a second, smaller dataset was used to improve detection in these settings.
+		This dataset is the Romanian Dataset of License Plates (RDLP). This dataset had a little over
+		500 training images with numerous plates per image many of which were partially obstructed or
+		blurred. Additionally, this dataset possesses images under a variety of lighting conditions including
+		night time photos.</p>
+		
+		<h3>Detection and Recognition</h3>
+		<p>For detection, the YOLOv5s model was trained on both datasets. Initially, the model was trained
+			on the CCPD for 100 epochs, and the weights that performed the best on the validation dataset
+			were saved. YOLOv5 models train very quickly, so only marginal improvements would be made
+			by training for much longer, and as can be seen in the figure, there was a general upward trend in
+			precision, but a general downward trend in recall as the number of epochs grew. For
+			privacy, it is ideal to have increased recall since a higher value in this statistic indicates fewer false
+			negatives which are catastrophic for privacy.
+			</p>
+			<span class="image main"><img src="images/license/traininggraph.jpg" alt="" /></span>
+		<p>
+			After training the model on CCPD, it was then finetuned on the RDLP to accommodate more difficult scenarios. To do this, the weights from the CCPD stage of training were used as a starting
+			point in the RDLP round of training. Since the RDLP is a much smaller dataset, data augmentation
+			was utilized to not only increase the number of images, but also to give a more diverse set of images
+			with obstructed license plates. Each image had three augmentations of a random cropping between
+			20-60% of the images’ dimensions. By combining CCPD and RDLP, the objective is to improve
+			the detection accuracy so that it is greater than a model solely trained on ideal plates. We can
+			measure this effect by comparing the iteration of the model that was solely trained on CCPD with
+			the iteration trained on both the CCPD and the RDLP datasets.
+		</p>
+		<p>
+			A secondary component in the system is the license plate recognition feature. This feature is
+not crucial for creating a template of license plate privacy, but it would be necessary for an actual
+instance of deployment. Recognizing the license plate allows the shuffle key to be stored along with
+the license plate number in an encrypted way that would require a private key associated with the
+license plate number to decrypt.
+		</p>
+
+		<p>
+			My system implements a license plate recognition protocol that leverages the fact that a license
+plate will be visible across many frames in a video. After detecting the region of the license
+plate, this section of the frame is passed to an optical character recognition (OCR) package called
+PyTesseract to read the plate. Although fairly accurate in many cases, PyTesseract is not sufficiently
+accurate frame-to-frame in a real-world video setting. To overcome this, each unique output from
+PyTesseract is saved and a tally is kept of the number of times each output is seen. After it has
+been predicted that a license plate has left video’s field of view, the most common saved iteration of
+this instance is outputted as the license plate’s predicted number. This method requires video to be
+successful in outputting the correct license plate numbers. Since annotated video data is difficult
+to come by and the video that will be used in testing later on only has a few unique license plates,
+there will be no measurement of this methods performance in license plate recognition.
+		</p>
+
+		<h3>License Plate Tracking</h3>
+		<p>
+			The tracking component of my privacy system is the most unique aspect compared to other
+literature. This feature has a few key steps. First, when a new license plate is detected, the region
+of detection has its SIFT features extracted and stored in the license plate data structure. As this
+license plate remains detected and moves through the video, its velocity is calculated by taking
+the average number of pixels the center of the license plate traversed per frame in the previous 30
+frames. If the detection model suddenly fails to detect the license plate in a frame, an estimated
+region in which the license plate could be is computed by adding the velocity coordinates to the last
+known location of the license plate. The maximum and minimum x and y coordinates of the corners
+of the last known location and the predicted location form the region in which a SIFT matching is
+attempted. This process can be seen below.
+		</p>
+		<span class="image main"><img src="images/license/trackingsum.jpg" alt="" /></span>
+<p>
+	If this matching returns a sufficient number of similar key points between the features stored in
+the license plate data structure and the new region, then the area encapsulating these key points is
+obfuscated as if that specific license plate was detected there. If there are not a sufficient number of
+key points, then the process repeats with a growing search region. After a certain number of frames
+in which there have been an insufficient number of key points, the instance of that license plate is
+removed, and the shuffle key and plate number are logged. The efficacy of this implementation
+can be measured by the how many instances of missed license plates are caught by the addition of
+license plate tracking.
+</p>
+
+<h3>License Plate Privacy</h3>
+<p>
+	The privacy component of the system is a fairly simple but effective approach. When a new license
+plate enters the video, a new, random binary shuffle key with length of 120 is generated and stored
+in the license plate data structure. Subsequently, for each license plate in each frame, the detected
+region of the license plate and the associated shuffle key are passed to the shuffling function. This
+function scales the license plate to a 48x160 pixel image. This rescaling allows the image to be
+partitioned into 120 8x8 blocks. This way, each block has a corresponding bit in the shuffle key.
+Now, the blocks associated with 1’s are swapped with adjacent blocks associated with 1’s, and the
+same is true of blocks associated with 0’s. The shuffle key should be the same across
+every frame of a license plate, and by simply recalling the shuffle function the obfuscated license
+plate with its associated key, the pixels will be unshuffled. This is a qualitative approach, so its
+evaluation will be of the same nature.
+</p>
+<span class="image main"><img src="images/license/shufflesum.jpg" alt="" /></span>
+
+
+							</article>
+
+						<!-- About -->
+							<article id="results">
+								<h2 class="major">Results</h2>
+								<h3>Experiment Design</h3>
+								<p>
+									There are a couple components to consider when evaluating this system. The first and possibly most
+important component is the efficacy of the license plate detection itself. Two datasets were used
+in training, and both of these datasets had an accompanying test subset set aside for the purpose
+of evaluation. Additionally, to test the efficacy of the system’s detection in video footage, four 30
+second videos were manually annotated using VATIC. All four videos are from the same security
+camera footage. The videos then had each of their frames saved as an image, and each frame’s
+annotation was subsequently converted to YOLO format. Thus, to evaluate the efficacy of detection,
+test sets from CCPD and RDLP will be used as well as the short video frames.
+								</p>
+								<p>
+									To gauge the performance of my model on these datasets relative to other implementations, I
+will include the performance of other YOLOv5 models as well. The first of these models (ANRP)
+was trained on an image set similar to that found in CCPD, but with far fewer images. This
+model was created for use as a comparison to YOLOv3 models. Second, I will compare my
+results to that of another model (Adverse Environments) trained on CCPD as well as on other
+hand-annotated video footage. This model claims to be trained for adverse environments, and
+since it was trained on CCPD as well, it should have similar performance to my model. The difference will lie in the selection of images with adverse conditions and how those conditions manifest.
+								</p>
+								<p>
+									The second component that will be evaluated is the system’s license plate tracking feature. This
+									will only be evaluated in the video data since license plates cannot be tracked across non-related
+									images. To evaluate its efficacy, I will take:</p>
+									<p> 									<sup>(#LP's Caught By Tracker)</sup>&frasl;<sub>(#LP's Missed By Detector)</sub>
+										.</p> 
+									<p>This will yield the rate at which
+									the tracking system picks up on license plates the detection model misses. In essence, this will be
+									the efficacy of the failsafe.
+								</p>
+								<p>
+									Finally, the license plate obfuscation will be solely measured in a qualitative manner on video
+footage. It is difficult to quantify the effectiveness of a privacy method, and it should be viewed as
+a qualitatively effective placeholder. Furthermore, I will demonstrate the quality of not only the
+obfuscation, but the reversibility as well.
+								</p>
+
+								<h3>Metrics</h3>
+								<p>
+									The metrics that will be considered when measuring this system’s detection efficacy are precision,
+recall, and mAP.5. Precision and recall are both good metrics, but recall is certainly the most crucial
+in a privacy setting, so particular interest will be placed in raising recall. As previously stated, a
+higher recall means a higher rate of the relevant elements (i.e. license plates) were detected. On
+the other hand, precision indicates the rate at which selected items are relevant. If one is looking
+to maximize privacy, false positives are of far less consequence than false negatives, and it is for
+this reason that recall will be the key metric. Lastly, using mean average precision is useful to
+demonstrate the models overall efficacy.
+								</p>
+								
+								<h3>Results and Comparison</h3>
+								<span class="image main"><img src="images/license/results.png" alt="" /></span>
+
+								<p>
+									Overall, the results were much of what was to be expected. ANRP performed poorly on nearly
+every test which is to be expected given the scope of its training data. This poor performance highlights the importance of a diverse and robust dataset for performance. More interesting, however,
+was the comparison between my proposed model and the Adverse Environment model. This model
+held its own across all test datasets and even outperformed the proposed model in recall for the
+RDLP test. However, its performance was noticeably worse in the video test. Evidently, the Adverse
+Environment model had difficulty capturing larger license plates which is likely an artifact of its
+training data. See below.
+								</p>
+								<div class="row">
+									<div class="col-6 col-12-small">	
+												<img src="images/license/ae_tough_small.jpg" alt="" />
+												<img src="images/license/ae_easy.jpg" alt="" />
+									</div>
+								</div> 
+
+								<p>
+									In light of the comparison of results, it is also useful to consider the comparison of each model’s
+training data object distribution. Each model had a wildly different distribution
+of the coordinates of its training data. In models trained with a wider distribution of coordinate
+values, that is in the Adverse Environment and Proposed system with finetuning, we see better
+recall performance in RDLP and higher mAP.5 in the video test. In the ANRP model, we see
+poor performance in nearly every test set. It is not a coincidence that this model was trained on a
+very limited array of images. Thus, as scenes become more difficult, we see a general increase in
+performance for models with a larger training distribution for license plate coordinates.
+								</p>
+								<span class="image main"><img src="images/license/fig9.png" alt="" /></span>
+
+							<!--	<div class="row">
+									<div class="col-6 col-12-small">	
+												<img src="images/license/anpr_dist.png" alt="" />
+												<img src="images/license/adverse_dist.png" alt="" />
+												<img src="images/license/original_dist.jpg" alt="" />
+												<img src="images/license/final_dist.jpg" alt="" />
+											</div>
+								</div> -->
+									<p>
+										Another factor to consider when training is the dimension diversity of the license plates in the
+training set. Here we see an enlightening trend in the tested models. As previously mentioned,the Adverse Environment model qualitatively had more trouble on larger license plates. This is
+despite being trained on CCPD like the proposed model. One explanation is that there were 60%
+more self-annotated video images than CCPD images used in the model’s training. One could
+conclude that this likely led to the model overtraining images in difficult conditions and specifically
+conditions with distant license plates. By observing the stats in the figure below, we see that this could be
+the case. There is a strange distribution of the dimension data in the Adverse environment training
+data with nearly no plates exceeding 10% the dimensions of the training images. When compared
+to the other models, we see a similar trend in the RDLP data; however, this is likely compensated
+by the noticeably wider distribution of dimensions in the original model’s training dataset.
+									</p>
+									<span class="image main"><img src="images/license/fig10.png" alt="" /></span>
+
+									<p>
+										This begs the question where the discrepancy comes from if both models utilized CCPD at least
+in part. One thing of note is that the Adverse Environment model contained about 60% more
+self-annotated video images than images from CCPD. However, given the distributions seen in the figure above, one would think that the Adverse Environment model would have contained at least
+some license plates exceeding the observed dimensions. One possible explanation is that in an
+attempt to train the data for difficult environments, a selection bias was introduced. Although the
+specific image set upon which the model was trained is not provided, an example of training labels
+(Figure 11) lends some credence to this theory.
+									</p>
+									<span class="image main"><img src="images/license/adverse_ccpd_Ex.jpg" alt="" /></span>
+
+									<p>
+										Overall, my model achieved a precision, recall, and mAP.5 all over 95% on the video test data.
+										This is incredible performance and demonstrates that this model could nearly be deployed in a
+										real-world surveillance setting. Perhaps one of the most interesting results was to see the difference
+										in performance between the proposed model trained only on CCPD and the final model trained on
+										both CCPD and RDLP. Despite a slight dip in performance of the final model on the CCPD test set,
+										it achieved far better results as the conditions of the license plates became more unfavorable. The	comparison of the original and finetuned models’ performances on the CCPD and RDLP test sets
+										can be seen below.
+									</p>
+									<span class="image main"><img src="images/license/fig12.png" alt="" /></span>
+
+									<p>
+										Now, it is time to measure the efficacy of the license plate tracking component of the system.
+Overall, the tracker performed adequately and caught 18 of 55 misses by the detection model in the
+video test set. This means that the tracker caught approximately 33% of the missed license plates
+(Figure 13). It is important to note here that the tracker will only be able to catch license plates that
+go from detected to undetected in the video. This is because it only searches for the SIFT features
+of a previously observed license plate. For this reason, the tracker would have slightly better results
+if just considering these examples rather than all missed detections. That being said, sometimes the
+tracker would blur the license plate without actually matching SIFT features accurately.
+									</p>
+									<span class="image main"><img src="images/license/fig13.png" alt="" /></span>
+
+									<p>\Overall, this is a very successful implementation of a tracker. Although it would ideally capture
+										a much higher percentage of missed license plates, in the realm of privacy, every detection from
+										tracking is important. This represents a fairly significant improvement in detection accuracy over
+										the baseline model.
+										</p>
+
+										<h3>Qualitative Results</h3>
+										<p>
+											After reviewing the quantifiable results of the system and comparing them to other relevant
+models, it is time to consider the unquantifiable results of the secret block-based obfuscation
+component of the system. A few examples of this shuffling performed on CCPD images can be seen
+in Figure 15. Qualitatively, this shuffling performs very well as the license plates are unreadable for
+all intents and purposes. However, sometimes swapped boxes can be inferred by stark color changes
+as seen in some of the images. The obfuscation in the video test set was also of good quality, and
+they were arguably better than those in the CCPD due to the color scheme of the video test giving
+away less spatial information.
+<span class="image main"><img src="images/license/video_blur.png" alt="" /></span>
+
+</p>
+<p>Another element of the privacy component of the system is its reversibility. Although the blockbased shuffle method is easily reversible, some artifacts do arise when performing this function
+	(Figure 17). As can be seen, the recovered license plate has a grid-like artifact introduced. This is
+	due to the resizing performed on a detected license plate to get it into the dimensionality required to divide it into 120 8x8 pixel boxes. Although this does not affect the readability of the recovered
+	plate, it does present some issues in preserving video quality. Overall, however, the use of secret
+	block-based obfuscation performs its roll well by rendering the license plate unreadable yet allowing
+	it to still be recovered.</p>
+	<span class="image main"><img src="images/license/obfuscation.png" alt="" /></span>
+
+
+							</article>
+
+						<!-- Contact -->
+							<article id="source">
+								<h2 class="major">Source</h2>
+								<p>
+									The full paper has more information, more analyses, and all sources. To test the license plate system for yourself, please go to the github repo.
+								</p>
+								<a href="https://github.com/Dreamweaver2k/LP_privacy/blob/main/LP_privacy/cjault_jp.pdf" target="_blank" rel="noopener"  class="button">Paper</a>
+								<a href="https://github.com/Dreamweaver2k/LP_privacy" target="_blank" rel="noopener" class="button">Code</a>
+
+
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" />
+										</div>
+										<div class="field half">
+											<label for="email">Email</label>
+											<input type="text" name="email" id="email" />
+										</div>
+										<div class="field">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" rows="4"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</form>
+								<ul class="icons">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</article>
+
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Primary</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button primary disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="demo-name">Name</label>
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+											</div>
+											<div class="field half">
+												<label for="demo-email">Email</label>
+												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+											</div>
+											<div class="field">
+												<label for="demo-category">Category</label>
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+												<label for="demo-priority-low">Low</label>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-high" name="demo-priority">
+												<label for="demo-priority-high">High</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-copy" name="demo-copy">
+												<label for="demo-copy">Email me a copy</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-human" name="demo-human" checked>
+												<label for="demo-human">Not a robot</label>
+											</div>
+											<div class="field">
+												<label for="demo-message">Message</label>
+												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets_dim/js/jquery.min.js"></script>
+			<script src="assets_dim/js/browser.min.js"></script>
+			<script src="assets_dim/js/breakpoints.min.js"></script>
+			<script src="assets_dim/js/util.js"></script>
+			<script src="assets_dim/js/main.js"></script>
+
+	</body>
+</html>
