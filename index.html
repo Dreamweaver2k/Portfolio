@@ -33,7 +33,7 @@
 						<header class="major">
 							<h2>Personal Story</h2>
 						</header>
-						<p>I began my studies at Princeton University in the fall of 2018. During my time there, I have found a passion for problem solving and computer vision. For me, computer vision is exciting due to its countless applications in numerous industries. My career goal is to leverage the power of modern computing and computer vision to improve lives, privacy, and productity for years to come. </p>
+						<p>I began my studies at Princeton University in the fall of 2018. During my time there, I have found a passion for problem solving, computer vision, and modeling. For me, computer vision is exciting due to its countless applications in numerous industries. My career goal is to leverage the power of modern computing, computer vision, and simulations to improve lives, privacy, and productity for years to come. </p>
 						<ul class="actions">
 							<li><a href="about.html" class="button">More About Me</a></li>
 						</ul>
@@ -56,7 +56,7 @@
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="LP.html" class="image fit thumb"  target="_blank" rel="noopener"><img src="images/projects/trafficthumb.jpg" alt="" /></a>
 								<h3>License Plate Privacy</h3>
-								<p>A yolo framework to increase privacy of traffic cameras</p>
+								<p>A real-time yolov5 license plate detection architecture with reversible obfuscation and object tracking.</p>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="Covid.html" class="image fit thumb" target="_blank" rel="noopener"><img src="images/projects/covidspreadthumb.jpg" alt="" /></a>
@@ -68,76 +68,26 @@
 							<li><a href="https://github.com/Dreamweaver2k" class="button">Github Profile</a></li>
 						</ul>
 					</section>
-					<?php
-					$to_email_address = "chandlerault@gmail.com";
-					$subject = "test";
-					$message = 'hello world';
-					
-					mail($to_email_address,$subject,$message,[$headers],[$parameters]);
-					?>
+
 				<!-- Three -->
 					<section id="three">
 						<h2>Get In Touch</h2>
-						<p>You can either email me directly or send a message here, and I will get back to you as soon as possible.</p>
+						
 						<div class="row">
-							<a href = "mailto:abc@example.com?subject = Feedback&body = Message">
-								Send Feedback
-								</a>
-							<div class="col-8 col-12-small">
-								<form method="post" action="#">
-									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name/Company" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-									</div>
-								</form>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div>
-							<?php
-        if(array_key_exists('button1', $_POST)) {
-            button1();
-        }
-        else if(array_key_exists('button2', $_POST)) {
-            button2();
-        }
-        function button1() {
-            echo "This is Button1 that is selected";
-        }
-        function button2() {
-            echo "This is Button2 that is selected";
-        }
-    ?>
-  
-    <form method="post">
-        <input type="submit" name="button1"
-                class="button" value="Button1" />
-          
-        <input type="submit" name="button2"
-                class="button" value="Button2" />
-    </form>
-							<div class="col-4 col-12-small">
-								<form method="post" action="mail">
-
-
-									<textarea name="message"></textarea>
-									
-									
-									<input type="submit">
-									
-									
-									</form>
-									
+							
+							
+							
+							<div class="col-4 col-12-small">	
 								<ul class="labeled-icons">
+									
+									<li>
+										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
+										<a href="#">chandlerault@gmail.com</a>
+									</li>
 									<li>
 										<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
 										Midland, MI 48640<br />
 										United States
-									</li>
-									<li>
-										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="#">chandlerault@gmail.com</a>
 									</li>
 								</ul>
 								
